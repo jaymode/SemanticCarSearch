@@ -38,6 +38,12 @@ public class QueryBuilder {
 		this.location = location;
 	}
 
+	/**
+	 * Build the SPARQL query based off of the values passed in on creation of
+	 * the class
+	 * 
+	 * @return SPARQL Query in the form of a String
+	 */
 	public String getSPARQLQuery() {
 		StringBuilder builder = new StringBuilder();
 
