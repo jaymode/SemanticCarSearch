@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+     <!ENTITY cars "http://jay.modi/myschema/cars#" >
+]>
+
+<rdf:RDF
+  xmlns     = "http://jay.modi/myschema/cars#"
+  xmlns:owl = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
+
+	<owl:Ontology rdf:about="">
+		<rdfs:comment>Partial OWL ontology for Car Ads</rdfs:comment>
+		<rdfs:label>Ontology for Car Advertisements</rdfs:label>
+	</owl:Ontology>
+
+	<owl:Class rdf:ID="carAd">
+		<rdfs:comment>Class for Car Ads</rdfs:comment>
+		<rdfs:label>Car Advertisement</rdfs:label>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasMake" />
+				<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasMake" />
+				<owl:allValuesFrom rdf:resource="#make" />
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasModel" />
+				<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasYear" />
+				<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasColor" />
+				<owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasMileage" />
+				<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasPrice" />
+				<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasPhoneNumber" />
+				<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasLocation" />
+				<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+	<owl:Class rdf:ID="make">
+	</owl:Class>
+
+	<owl:ObjectProperty rdf:ID="hasMake">
+    <rdfs:comment>Make of the vehicle</rdfs:comment>
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#carAd"/>
+    <rdfs:range rdf:resource="#make"/>
+	<rdfs:subClassOf>
+		<owl:restriction>
+			<owl:onProperty rdf:resource="#companyName" />
+			<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+		</owl:restriction>
+	</rdfs:subClassOf>
+  </owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:ID="hasModel">
+		<rdfs:comment>Model of the vehicle</rdfs:comment>
+		<rdf:type rdf:resource="&owl;FunctionalProperty" />
+	</owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:ID="hasYear">
+		<rdfs:comment>Model year of the vehicle</rdfs:comment>
+		<rdf:type rdf:resource="&owl;FunctionalProperty" />
+	</owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:ID="hasColor">
+		<rdfs:comment>Color of the vehicle</rdfs:comment>
+		<rdfs:domain rdf:resource="#carAd" />
+		<rdfs:range rdf:resource="&xsd;string" />
+	</owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:ID="hasMileage">
+		<rdfs:comment>Mileage of the vehicle in the ad</rdfs:comment>
+		<rdf:type rdf:resource="&owl;FunctionalProperty" />
+		<rdfs:domain rdf:resource="#carAd" />
+		<rdfs:range rdf:resource="&xsd;nonNegativeInteger" />
+	</owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:ID="hasPrice">
+		<rdfs:comment>Price of the vehicle in the ad</rdfs:comment>
+		<rdf:type rdf:resource="&owl;FunctionalProperty" />
+		<rdfs:domain rdf:resource="#carAd" />
+		<rdfs:range rdf:resource="&xsd;decimal" /> <!-- TODO create XSD simple type for money -->
+	</owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:ID="hasPhoneNumber">
+		<rdfs:comment>Phone number for seller of vehicle</rdfs:comment>
+		<rdf:type rdf:resource="&owl;FunctionalProperty" />
+		<rdfs:domain rdf:resource="#carAd" />
+		<rdfs:range rdf:resource="&xsd;string" />
+	</owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:ID="hasLocation">
+		<rdfs:comment>Location of the vehicle (Zip Code)</rdfs:comment>
+		<rdf:type rdf:resource="&owl;FunctionalProperty" />
+		<rdfs:domain rdf:resource="#carAd" />
+		<rdfs:range rdf:resource="&xsd;string" /> <!-- TODO create xsd type for zip code -->
+	</owl:ObjectProperty>
+
+	<owl:NamedIndividual rdf:about="&cars;carAd001">
+		<rdf:type rdf:resource="#carAd" />
+		<hasMake rdf:resource="#GeneralMotors" />
+		<hasModel>Jimmy</hasModel>
+		<hasYear>2002</hasYear>
+		<hasColor>Metallic Silver</hasColor>
+		<hasMileage>75346</hasMileage>
+		<hasPrice>5499</hasPrice>
+		<hasPhoneNumber>555-555-5555</hasPhoneNumber>
+		<hasLocation>11387</hasLocation>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&cars;carAd002">
+		<rdf:type rdf:resource="#carAd" />
+		<hasMake rdf:resource="#GeneralMotors" />
+		<hasModel>Silverado</hasModel>
+		<hasYear>2005</hasYear>
+		<hasColor>Blue</hasColor>
+		<hasMileage>75346</hasMileage>
+		<hasPrice>7300</hasPrice>
+		<hasPhoneNumber>555-555-1234</hasPhoneNumber>
+		<hasLocation>22043</hasLocation>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&cars;carAd003">
+		<rdf:type rdf:resource="#carAd" />
+		<hasMake rdf:resource="#Ford" />
+		<hasModel>Explorer</hasModel>
+		<hasYear>2010</hasYear>
+		<hasColor>Green</hasColor>
+		<hasMileage>2000</hasMileage>
+		<hasPrice>16999</hasPrice>
+		<hasPhoneNumber>515-555-1234</hasPhoneNumber>
+		<hasLocation>20877</hasLocation>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&cars;GeneralMotors">
+		<rdf:type rdf:resource="#make" />
+		<companyName>General Motors</companyName>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&cars;Ford">
+		<rdf:type rdf:resource="#make" />
+		<companyName>Ford</companyName>
+	</owl:NamedIndividual>
+</rdf:RDF>

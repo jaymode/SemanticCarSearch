@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="grp1" prefer="public" xml:base="">
+        <uri id="uri1" name="http://jay.modi/myschema/2011/7/Ontology1313352522091.owl" uri="car_ads.owl"/>
+    </group>
+</catalog>
